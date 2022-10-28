@@ -36,3 +36,25 @@ export default function App() {
     </html>
   );
 }
+
+interface ErrorBoundInt {
+  error: Error
+}
+
+export function ErrorBoundary( params: ErrorBoundInt) {
+  const {error} = params;
+  return (
+    <html>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className='m-4'>
+        <h1 className='text-2xl'>Something went wrong!</h1>
+        <p>{error.message}</p>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
