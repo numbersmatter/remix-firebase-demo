@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Outlet, useLoaderData, useParams } from "@remix-run/react";
 import AboutArtist from "~/componets/artistProfile/AboutArtist";
 import ArtistFAQ from "~/componets/artistProfile/ArtistFAQs";
 import ArtistOpenForms from "~/componets/artistProfile/ArtistOpenForms";
@@ -28,7 +28,18 @@ interface LoaderArtistData {
 export const loader: LoaderFunction = async ({ params }) => {
   const artistId = params.artistId ? params.artistId : "undefined";
   let res = await fetch(`http://127.0.0.1:5001/component-sites/us-central1/app/artist/${artistId}`)
-  return res.json()
+
+  const responseData =  await res.json();
+  const exists: boolean = responseData.exists;
+
+  if(!exists){
+    throw new Response("Not Found", {
+      status: 404,
+    });
+  }
+
+
+  return responseData
   
 
   // const profileHeaderData: ProfileHeaderData = {
@@ -77,6 +88,16 @@ export function ErrorBoundary(params: ErrorBoundInt) {
   return (
     <div>
       <h2>Something Went wrong getting that artist's data</h2>
+    </div>
+  );
+}
+
+export function CatchBoundary() {
+  const params = useParams();
+  return (
+    <div>
+      <h2>We couldn't find that page!</h2>
+      <p>No artist id could be found.</p>
     </div>
   );
 }

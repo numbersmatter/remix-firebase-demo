@@ -16,18 +16,18 @@ export function links() {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "TheFurryMarketplace.com",
   viewport: "width=device-width,initial-scale=1",
 });
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-gray-100">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
