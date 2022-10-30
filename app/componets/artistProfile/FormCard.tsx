@@ -1,8 +1,10 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link } from "@remix-run/react";
+import type { FormCardData, } from "~/utils/interfaces";
 
 /* eslint-disable-next-line */
-export interface FormCardProps {
-  data: any,
+
+interface FormCardProps {
+  data: FormCardData
 }
 
 export function FormCard(props: FormCardProps) {

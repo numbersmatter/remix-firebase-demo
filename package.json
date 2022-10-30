@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.3",
+    "@headlessui/tailwindcss": "^0.1.1",
     "@heroicons/react": "^2.0.12",
     "@remix-run/node": "^1.7.2",
     "@remix-run/react": "^1.7.2",

@@ -1,24 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Outlet, useLoaderData, useParams } from "@remix-run/react";
+import { Link, Outlet, useLoaderData, useParams } from "@remix-run/react";
 import AboutArtist from "~/componets/artistProfile/AboutArtist";
 import ArtistFAQ from "~/componets/artistProfile/ArtistFAQs";
 import ArtistOpenForms from "~/componets/artistProfile/ArtistOpenForms";
 import ProfileHeader from "~/componets/ProfileHeader";
-import {getArtistData} from "~/fetch/artistProfile";
+import { getArtistData } from "~/fetch/artistProfile";
+import type {ArtistAboutData, ProfileHeaderData} from "~/utils/interfaces";
 
-interface ProfileHeaderData {
-  avatarImg: string;
-  displayName: string;
-  bannerImage: string;
-  headerString: string;
-  profileHeadline: string;
-}
+
 
 interface LoaderArtistData {
-  profileHeaderData: ProfileHeaderData,
-  exists: boolean,
+  profileHeaderData: ProfileHeaderData;
+  aboutArtistData: ArtistAboutData;
+  exists: boolean;
 }
 
 // type LoaderData = {
@@ -27,20 +23,20 @@ interface LoaderArtistData {
 
 export const loader: LoaderFunction = async ({ params }) => {
   const artistId = params.artistId ? params.artistId : "undefined";
-  let res = await fetch(`http://127.0.0.1:5001/component-sites/us-central1/app/artist/${artistId}`)
+  let res = await fetch(
+    `http://127.0.0.1:5001/component-sites/us-central1/app/artist/${artistId}`
+  );
 
-  const responseData =  await res.json();
+  const responseData = await res.json();
   const exists: boolean = responseData.exists;
 
-  if(!exists){
+  if (!exists) {
     throw new Response("Not Found", {
       status: 404,
     });
   }
 
-
-  return responseData
-  
+  return responseData;
 
   // const profileHeaderData: ProfileHeaderData = {
   //   avatarImg:
@@ -56,23 +52,21 @@ export const loader: LoaderFunction = async ({ params }) => {
   //   profileHeaderData: profileHeaderData,
   //   exists: true,
   // };
-
-
 };
 
 export default function ArtistId() {
-  const data = useLoaderData() as LoaderArtistData;
+  const {profileHeaderData, aboutArtistData} = useLoaderData() as LoaderArtistData;
 
   return (
     <div className="min-h-screen bg-[#2a9bb5] flex flex-col ">
-      <ProfileHeader data={data.profileHeaderData} />
+      <ProfileHeader data={profileHeaderData} />
       <div className="max-w-7xl mx-auto w-full mb-2 sm:px-6 lg:px-8 grow ">
         {/* Content goes here */}
-        {/* <div className="rounded-lg border-2 mb-3 bg-white">
+        <div className="rounded-lg border-2 mb-3 bg-white">
           <AboutArtist data={aboutArtistData}/>
-          <ArtistOpenForms data={artistOpenFormsData} />
-          <ArtistFAQ faqs={faqsData} />
-        </div> */}
+          {/* <ArtistOpenForms data={artistOpenFormsData} /> */}
+          {/* <ArtistFAQ faqs={faqsData} /> */}
+        </div>
       </div>
       {/* <ArtistShopFooter /> */}
     </div>
@@ -96,8 +90,36 @@ export function CatchBoundary() {
   const params = useParams();
   return (
     <div>
-      <h2>We couldn't find that page!</h2>
-      <p>No artist id could be found.</p>
+      <div className="flex flex-shrink-0 justify-center">
+        <a href="/" className="inline-flex">
+          <span className="sr-only">Your Company</span>
+          <img
+            className="h-12 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt=""
+          />
+        </a>
+      </div>
+      <div className="py-16">
+        <div className="text-center">
+          <p className="text-base text-white font-semibold ">404</p>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Page not found.
+          </h1>
+          <p className="mt-2 text-base text-white">
+            Sorry, we couldn’t find the page you’re looking for.
+          </p>
+          <div className="mt-6">
+            <Link
+              to="/"
+              className="text-base font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Go back home
+              <span aria-hidden="true"> &rarr;</span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

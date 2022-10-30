@@ -1,10 +1,6 @@
-/* eslint-disable-next-line */
+import type { ArtistAboutData } from "~/utils/interfaces";
 
-interface ArtistAboutData {
-  accountName: string;
-  featuredArt: string;
-  aboutText: string;
-}
+/* eslint-disable-next-line */
 
 
 

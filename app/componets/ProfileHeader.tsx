@@ -1,10 +1,4 @@
-interface ProfileHeaderData {
-  avatarImg: string;
-  displayName: string;
-  bannerImage: string;
-  headerString: string;
-  profileHeadline: string;
-}
+import type { ProfileHeaderData } from "~/utils/interfaces";
 
 export interface ProfileHeaderProps {
   data: ProfileHeaderData;
@@ -14,7 +8,7 @@ export function ProfileHeader(props: ProfileHeaderProps) {
   const { 
     bannerImage, 
     headerString, 
-    avatarImg, 
+    avatarImage, 
     displayName, 
     profileHeadline 
   } = props.data;
@@ -36,7 +30,7 @@ export function ProfileHeader(props: ProfileHeaderProps) {
           <div className="flex">
             <img
               className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-              src={avatarImg}
+              src={avatarImage}
               alt=""
             />
           </div>

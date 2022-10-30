@@ -2,6 +2,7 @@ import { Disclosure, } from "@headlessui/react";
 import {  BellIcon,  } from '@heroicons/react/24/outline'
 import { classNames } from "~/utils/stylingFuncs";
 import type { SiteNavLink, UserNav, UserNavLink } from "./TopNavBar";
+import { NavLink } from "@remix-run/react";
 
 
 
@@ -26,8 +27,8 @@ export function DesktopNavBar(props: DesktopNavBarParams){
           className={classNames(
             item.current
               ? 'bg-indigo-700 text-white'
-              : 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
-            'block px-3 py-2 rounded-md text-base font-medium'
+              : 'text-black hover:bg-indigo-500 hover:bg-opacity-75',
+            'block px-5  py-2 rounded-md text-base font-medium'
           )}
           aria-current={item.current ? 'page' : undefined}
         >

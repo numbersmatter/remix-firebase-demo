@@ -7,11 +7,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import TopNavBar from "./componets/appShell/TopNavBar";
 
-import styles from "./styles/app.css"
+import styles from "./styles/app.css";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }]
+  return [{ rel: "stylesheet", href: styles }];
 }
 
 export const meta: MetaFunction = () => ({
@@ -27,8 +28,11 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full">
+      <body className="h-full flex flex-col">
+        {/* <div className="min-h-full"> */}
+        <TopNavBar />
         <Outlet />
+        {/* </div> */}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
@@ -38,11 +42,11 @@ export default function App() {
 }
 
 interface ErrorBoundInt {
-  error: Error
+  error: Error;
 }
 
-export function ErrorBoundary( params: ErrorBoundInt) {
-  const {error} = params;
+export function ErrorBoundary(params: ErrorBoundInt) {
+  const { error } = params;
   return (
     <html>
       <head>
@@ -50,8 +54,8 @@ export function ErrorBoundary( params: ErrorBoundInt) {
         <Meta />
         <Links />
       </head>
-      <body className='m-4'>
-        <h1 className='text-2xl'>Something went wrong!</h1>
+      <body className="m-4">
+        <h1 className="text-2xl">Something went wrong!</h1>
         <p>{error.message}</p>
         <Scripts />
       </body>

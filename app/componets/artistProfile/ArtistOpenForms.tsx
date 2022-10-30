@@ -1,13 +1,5 @@
+import type { ArtistOpenFormsData } from "~/utils/interfaces";
 import FormCard from "./FormCard";
-
-interface OpenBatchForm {
-  batchId: string,
-};
-
-interface ArtistOpenFormsData {
-  openForms: OpenBatchForm[],
-  allClosedData: any;
-}
 
 
 /* eslint-disable-next-line */
@@ -40,8 +32,8 @@ export function ArtistOpenForms(props: ArtistOpenFormsProps) {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {
               openForms.length < 0 
-              ? <img className='h-72 mx-auto w-auto ' src={allClosedData.img}/>
-              : openForms.map( (formCard: any) => <FormCard data={formCard}/> )
+              ? <img className='h-72 mx-auto w-auto ' alt="Store Closed" src={allClosedData.closedImage}/>
+              : openForms.map( (formCard) => <FormCard key={formCard.requestLink} data={formCard}/> )
             }
           </div>
         </div>

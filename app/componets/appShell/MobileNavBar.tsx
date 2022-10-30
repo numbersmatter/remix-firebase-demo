@@ -3,23 +3,24 @@ import { Fragment } from "react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { SiteNavLink, UserNav, UserNavLink } from "./TopNavBar";
 import { classNames } from "~/utils/stylingFuncs";
+import { NavLink } from "@remix-run/react";
 
+export interface MobileNavBarParams {
+  navigation: SiteNavLink[];
+  userNavigation: UserNavLink[];
+  user: UserNav;
+  open: boolean;
+}
 
+const activeStyle = 'bg-indigo-700 text-white px-3 py-2 ml-3 rounded-md text-sm font-medium'
 
-
-export interface MobileNavBarParams{
-  navigation: SiteNavLink[],
-  userNavigation: UserNavLink[],
-  user: UserNav,
-  open: boolean
-} 
+const notActiveStyle = 'text-black ml-3 hover:bg-indigo-500 hover:text-white hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium'
 
 export default function MobileNavBar(params: MobileNavBarParams) {
-  const { navigation, userNavigation, user, open} = params;
-
+  const { navigation, userNavigation, user, open } = params;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl  px-4 sm:px-6 lg:px-8">
       <div className="flex h-16 items-center justify-between">
         <div className="flex items-center">
           <div className="flex-shrink-0">
@@ -31,21 +32,26 @@ export default function MobileNavBar(params: MobileNavBarParams) {
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-indigo-700 text-white"
-                      : "text-white hover:bg-indigo-500 hover:bg-opacity-75",
-                    "px-3 py-2 rounded-md text-sm font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
+              {/* <ul> */}
+                  <NavLink
+                    // key={item.name}
+                    to={`/`}
+                    className={({ isActive }) =>
+                    isActive ? activeStyle : notActiveStyle
+                  }
+                  >
+                    Home
+                  </NavLink>
+                  <NavLink
+                    // key={item.name}
+                    to={`/artist`}
+                    className={({ isActive }) =>
+                    isActive ? activeStyle : notActiveStyle
+                  }
+                  >
+                    Find Artist
+                  </NavLink>
+              {/* </ul> */}
             </div>
           </div>
         </div>
