@@ -27,3 +27,7 @@ export interface FormCardData {
   description: string,
   requestLink: string,
 }
+
+export interface ErrorBoundInt {
+  error: Error;
+}

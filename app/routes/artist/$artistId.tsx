@@ -64,6 +64,7 @@ export default function ArtistId() {
         {/* Content goes here */}
         <div className="rounded-lg border-2 mb-3 bg-white">
           <AboutArtist data={aboutArtistData}/>
+          <Outlet />
           {/* <ArtistOpenForms data={artistOpenFormsData} /> */}
           {/* <ArtistFAQ faqs={faqsData} /> */}
         </div>
