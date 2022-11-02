@@ -31,3 +31,29 @@ export interface FormCardData {
 export interface ErrorBoundInt {
   error: Error;
 }
+
+export type QuestionType =
+  | 'text-input'
+  | 'text-area'
+  | 'email'
+  | 'select'
+  | 'gallery'
+  | 'file-input';
+
+  export interface QuestionDocTextInputProps {
+    defaultValue: string;
+    placeholder: string;
+    responseMinimum: number;
+    responseMinimumText: string;
+  
+  }
+
+  export interface QuestionDocTextAreaProps {
+    defaultValue: string;
+    placeholder: string;
+    responseMinimum: number;
+    responseMinimumText: string;
+    numberRows: number;
+  }
+
+export type QuestionProps = QuestionDocTextInputProps | QuestionDocTextAreaProps

@@ -11,9 +11,6 @@ export interface ArtistOpenFormsProps {
 export function ArtistOpenForms(props: ArtistOpenFormsProps) {
   const { openForms, allClosedData } = props.data;
 
-
-
-
   return (
     <div className="bg-gray-100">
       <div className="pt-12 sm:pt-16 lg:pt-20">

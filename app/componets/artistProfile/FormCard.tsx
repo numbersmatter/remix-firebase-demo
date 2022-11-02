@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react";
+import { Link, useParams } from "@remix-run/react";
 import type { FormCardData, } from "~/utils/interfaces";
 import FormCardButton from "./FormCardButtonForm";
 
@@ -10,6 +10,8 @@ interface FormCardProps {
 
 export function FormCard(props: FormCardProps) {
   const { formName, description, requestLink} = props.data;
+  const { artistId} = useParams();
+  const artistIdString = artistId ? artistId : "undefined"
 
 
 
@@ -58,7 +60,7 @@ export function FormCard(props: FormCardProps) {
           >
             Request Commission
           </Link> */}
-          <FormCardButton batchId={requestLink} />
+          <FormCardButton batchId={requestLink} artistId={artistIdString}/>
         </div>
       </div>
       <div className="mt-4 text-sm">
