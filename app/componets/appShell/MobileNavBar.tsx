@@ -2,7 +2,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import type { SiteNavLink, UserNav, UserNavLink } from "./TopNavBar";
-import { classNames } from "~/utils/stylingFuncs";
+// import { classNames } from "~/utils/stylingFuncs";
 import { NavLink } from "@remix-run/react";
 
 export interface MobileNavBarParams {
@@ -16,8 +16,13 @@ const activeStyle = 'bg-indigo-700 text-white px-3 py-2 ml-3 rounded-md text-sm 
 
 const notActiveStyle = 'text-black ml-3 hover:bg-indigo-500 hover:text-white hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium'
 
+ type ClassNameStrings = string[]
+ function classNames(...classes: ClassNameStrings) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function MobileNavBar(params: MobileNavBarParams) {
-  const { navigation, userNavigation, user, open } = params;
+  const {  userNavigation, user, open } = params;
 
   return (
     <div className="mx-auto max-w-7xl  px-4 sm:px-6 lg:px-8">

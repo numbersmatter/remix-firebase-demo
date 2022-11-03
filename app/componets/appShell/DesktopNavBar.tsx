@@ -1,8 +1,8 @@
 import { Disclosure, } from "@headlessui/react";
 import {  BellIcon,  } from '@heroicons/react/24/outline'
-import { classNames } from "~/utils/stylingFuncs";
+// import { classNames } from "~/utils/stylingFuncs";
 import type { SiteNavLink, UserNav, UserNavLink } from "./TopNavBar";
-import { NavLink } from "@remix-run/react";
+
 
 
 
@@ -12,6 +12,11 @@ export interface DesktopNavBarParams{
   userNavigation: UserNavLink[],
   user: UserNav
 } 
+
+type ClassNameStrings = string[]
+function classNames(...classes: ClassNameStrings) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export function DesktopNavBar(props: DesktopNavBarParams){
   const { navigation, userNavigation, user} = props
