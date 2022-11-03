@@ -1,4 +1,6 @@
-import { ValidatedForm, Validator } from "remix-validated-form";
+import { useActionData } from "@remix-run/react";
+import type { Validator } from "remix-validated-form";
+import { ValidatedForm } from "remix-validated-form";
 import { FormSubmitButton } from "../FormSubmitButton";
 import { TextFormInput } from "../TextFormInputs";
 
@@ -10,6 +12,9 @@ export interface QuestionFormProps {
 
 export default function QuestionForm(props: QuestionFormProps){
   const {validator} = props;
+  const data = useActionData();
+
+  console.log(data)
 
   return (
     <ValidatedForm
